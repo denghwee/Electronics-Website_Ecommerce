@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  db:
+    image: mariadb:10.4
+    container_name: mysql_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234 
+      MYSQL_DATABASE: ecommerce 
+    volumes:
+      - db_data:/var/lib/mysql # Lưu trữ dữ liệu database bên ngoài container
+    ports:
+      - "3306:3306" # Mở cổng MySQL ra host (để kết nối từ ngoài nếu cần)
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin_app
+    restart: always
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: mysql_db
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: 1234
+    depends_on:
+      - db 
+
+volumes:
+  db_data:
