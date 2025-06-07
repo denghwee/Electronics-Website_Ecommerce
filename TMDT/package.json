@@ -26,7 +26,7 @@
     "installable": "^0.2.8",
     "jsonwebtoken": "^9.0.2",
     "mysql": "^2.18.1",
-    "status": "^0.0.13",
+    "status": "^0.0.6",
     "url": "^0.11.3",
     "util": "^0.12.5"
   },
