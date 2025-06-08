@@ -7,16 +7,16 @@ const crypto = require('crypto');
  * @returns {Promise<string>} - Trả về link thanh toán MoMo (payUrl)
  */
 function get_momo_link({
-    amount = "50000",
-    orderInfo = "pay with MoMo",
-    redirectUrl = "./return",
-    ipnUrl = "./notify",
-    partnerCode = "MOMO",
-    accessKey = "F8BBA842ECF85",
-    secretkey = "K951B6PE1waDMi640xX08PD3vg6EkVlz",
-    requestType = "captureWallet",
-    extraData = ""
-} = {}) {
+        amount,
+        orderInfo = "pay with MoMo",
+        redirectUrl = process.env.MOMO_RETURN_URL,
+        ipnUrl = process.env.MOMO_NOTIFY_URL,
+        partnerCode = process.env.MOMO_PARTNER_CODE,
+        accessKey = process.env.MOMO_ACCESS_KEY,
+        secretkey = process.env.MOMO_SECRET_KEY,
+        requestType = "captureWallet",
+        extraData = ""
+    } = {}) {
     return new Promise((resolve, reject) => {
         const requestId = partnerCode + new Date().getTime();
         const orderId = requestId;
@@ -80,6 +80,9 @@ function get_momo_link({
                 }
             });
         });
+
+        console.log(requestBody)
+
 
         req.on('error', (e) => reject(`Lỗi gửi request tới MoMo: ${e.message}`));
         req.write(requestBody);
