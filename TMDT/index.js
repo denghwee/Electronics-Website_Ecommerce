@@ -1,12 +1,16 @@
-// import lib
+// imcfg.port lib
 const ejs = require('ejs');
 const path = require('path')
+const fs = require('fs');
 const express = require('express')
 const util = require('util')
 const app = express()
 const dotdenv = require('dotenv').config();
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
+const ngrok = require('@ngrok/ngrok');
+const http = require('http');
+const vnpayConfig = require('./src/config/vnpay.config'); 
 
 // connect to db
 const db = require('./src/config/db/connect');
@@ -33,6 +37,28 @@ app.use(cookieParser('secret'))
 // route init
 route(app)
 
-app.listen(cfg.port, () => {
-    console.log(`Website is running at http://${cfg.host}:${cfg.port}`)
-})
+function updateVnpayConfig(ngrokUrl) {
+    const configPath = path.join(__dirname, 'src/config/vnpay.config.json');
+    const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+    config.vnp_ReturnUrl = `${ngrokUrl}/vnpay_return`;
+    config.vnp_IpnUrl = `${ngrokUrl}/vnpay_ipn`;
+    fs.writeFileSync(configPath, JSON.stringify(config, null, 2), 'utf8');
+    console.log('vnpay.config.json updated!');
+}
+
+
+app.listen(cfg.port, async () => {
+    console.log(`Website is running at http://${cfg.host}:${cfg.port}`);
+
+    try {
+        const listener = await ngrok.connect({
+            addr: cfg.port,
+            authtoken: process.env.NGROK_AUTHTOKEN,
+        });
+        const ngrokUrl = listener.url();
+        console.log(`Ngrok tunnel: ${ngrokUrl}`);
+        updateVnpayConfig(ngrokUrl);
+    } catch (err) {
+        console.error('Ngrok error:', err);
+    }
+});

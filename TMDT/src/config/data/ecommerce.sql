@@ -591,13 +591,13 @@ CREATE TABLE `orders` (
   `order_name` varchar(100) NOT NULL,
   `order_phone` varchar(10) NOT NULL,
   `order_date` date NOT NULL DEFAULT current_timestamp(),
-  `order_delivery_date` date NOT NULL,
+  `order_delivery_date` date NOT NULL DEFAULT current_timestamp(), 
   `order_delivery_address` varchar(100) NOT NULL,
   `order_note` text NOT NULL,
   `order_total_before` int(11) DEFAULT 0,
   `order_total_after` int(11) NOT NULL DEFAULT 0,
   `paying_method_id` int(11) NOT NULL DEFAULT 1,
-  `order_paying_date` date NOT NULL,
+  `order_paying_date` date NOT NULL DEFAULT current_timestamp(),
   `order_is_paid` tinyint(1) NOT NULL,
   `order_status` enum('Chờ thanh toán','Đang giao hàng','Hoàn thành','Đã hủy') DEFAULT 'Chờ thanh toán'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;

@@ -1,0 +1,7 @@
+{
+  "vnp_TmnCode": "O7K2BUIF",
+  "vnp_HashSecret": "LCYH0V3F76V08ZZC8AJ0RPWBWE388MKO",
+  "vnp_Url": "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html",
+  "vnp_ReturnUrl": "https://944e-42-115-248-226.ngrok-free.app/vnpay_return",
+  "vnp_IpnUrl": "https://944e-42-115-248-226.ngrok-free.app/vnpay_ipn"
+}
