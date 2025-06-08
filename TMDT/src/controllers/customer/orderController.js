@@ -171,8 +171,6 @@ orderController.payment = async (req, res) => {
 			);
 		}
 
-		console.log(purchase[0])
-
 		try {
 			const url = await momo_get_link({
 				amount: totalAmount,
