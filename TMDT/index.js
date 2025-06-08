@@ -10,8 +10,6 @@ const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const ngrok = require('@ngrok/ngrok');
 const http = require('http');
-const vnpayConfig = require('./src/config/vnpay.config'); 
-
 // connect to db
 const db = require('./src/config/db/connect');
 const query = util.promisify(db.query).bind(db)
@@ -37,14 +35,14 @@ app.use(cookieParser('secret'))
 // route init
 route(app)
 
-function updateVnpayConfig(ngrokUrl) {
-    const configPath = path.join(__dirname, 'src/config/vnpay.config.json');
-    const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
-    config.vnp_ReturnUrl = `${ngrokUrl}/vnpay_return`;
-    config.vnp_IpnUrl = `${ngrokUrl}/vnpay_ipn`;
-    fs.writeFileSync(configPath, JSON.stringify(config, null, 2), 'utf8');
-    console.log('vnpay.config.json updated!');
-}
+// function updateConfig(ngrokUrl) {
+//     const configPath = path.join(__dirname, 'src/config/config.json');
+//     const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+//     config.vnp_ReturnUrl = `${ngrokUrl}/return`;
+//     config.vnp_IpnUrl = `${ngrokUrl}/ipn`;
+//     fs.writeFileSync(configPath, JSON.stringify(config, null, 2), 'utf8');
+//     console.log('vnpay.config.json updated!');
+// }
 
 
 app.listen(cfg.port, async () => {
@@ -57,7 +55,7 @@ app.listen(cfg.port, async () => {
         });
         const ngrokUrl = listener.url();
         console.log(`Ngrok tunnel: ${ngrokUrl}`);
-        updateVnpayConfig(ngrokUrl);
+        // updateConfig(ngrokUrl);
     } catch (err) {
         console.error('Ngrok error:', err);
     }
