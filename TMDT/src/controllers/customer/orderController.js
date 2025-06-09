@@ -173,7 +173,7 @@ orderController.payment = async (req, res) => {
 
 		try {
 			const url = await momo_get_link({
-				amount: totalAmount,
+				amount: totalAmount, 
 				orderInfo: `Thanh toán đơn hàng ${order_id} của ${name}`
 
 			});
