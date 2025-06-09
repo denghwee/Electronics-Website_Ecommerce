@@ -67,8 +67,8 @@ order.updateCart = async function (customer_id, productsUpdateCart, callback) {
 order.insertOrder = function (customer_id, orderInfo, orderDetails, callback) {
     let insertOrder = ''
     if (orderInfo.paying_method_id != 1) {
-        insertOrder = `INSERT INTO orders (customer_id, order_name, order_phone, order_delivery_address, order_note, paying_method_id)
-                        VALUES (${customer_id}, ? , '${orderInfo.order_phone}', ? , ? , ${orderInfo.paying_method_id})`
+        insertOrder = `INSERT INTO orders (customer_id, order_name, order_phone, order_delivery_address, order_note, paying_method_id, order_is_paid)
+                        VALUES (${customer_id}, ? , '${orderInfo.order_phone}', ? , ? , ${orderInfo.paying_method_id}, 1)`
     } else {
         insertOrder = `INSERT INTO orders (customer_id, order_name, order_phone, order_delivery_address, order_note, paying_method_id, order_is_paid, order_status)
                         VALUES (${customer_id}, ? , '${orderInfo.order_phone}', ? , ? , 1, 1 ,'Đang giao hàng')`

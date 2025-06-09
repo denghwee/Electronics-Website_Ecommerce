@@ -10,6 +10,7 @@ const https = require('https');
 
 
 const momo_get_link = require('../../helper/momo');
+const stripe_get_link = require('../../helper/stripe');
 
 const orderController = () => { }
 
@@ -182,12 +183,31 @@ orderController.payment = async (req, res) => {
 			return res.status(400).send(err);
 		}
 	} else if (paying_method_id == 2) {
-		res.render("./pages/order/atm", {
-			header: header,
-			user: header_user,
-			formatFunction: formatFunction,
-			purchase: purchase[0],
-		})
+		// res.render("./pages/order/atm", {
+		// 	header: header,
+		// 	user: header_user,
+		// 	formatFunction: formatFunction,
+		// 	purchase: purchase[0],
+		// })
+
+
+		let totalAmount = 0;
+		if (purchase[0] && Array.isArray(purchase[0].order_details)) {
+			totalAmount = purchase[0].order_details.reduce(
+				(sum, detail) => sum + (detail.order_detail_price_after || 0), 0
+			);
+		}
+
+		try {
+			const url = await stripe_get_link({
+				amount: totalAmount, 
+				orderInfo: `Thanh toán đơn hàng ${order_id} của ${name}`
+
+			});
+			return res.redirect(url);
+		} catch (err) {
+			return res.status(400).send(err);
+		}
 	} else if (paying_method_id == 3) {
 		res.render("./pages/order/credit", {
 			header: header,

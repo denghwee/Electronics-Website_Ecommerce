@@ -8,7 +8,7 @@ const app = express()
 const dotdenv = require('dotenv').config();
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
-const ngrok = require('@ngrok/ngrok');
+// const ngrok = require('@ngrok/ngrok');
 const http = require('http');
 // connect to db
 const db = require('./src/config/db/connect');
@@ -49,12 +49,12 @@ app.listen(cfg.port, async () => {
     console.log(`Website is running at http://${cfg.host}:${cfg.port}`);
 
     try {
-        const listener = await ngrok.connect({
-            addr: cfg.port,
-            authtoken: process.env.NGROK_AUTHTOKEN,
-        });
-        const ngrokUrl = listener.url();
-        console.log(`Ngrok tunnel: ${ngrokUrl}`);
+        // const listener = await ngrok.connect({
+        //     addr: cfg.port,
+        //     authtoken: process.env.NGROK_AUTHTOKEN,
+        // });
+        // const ngrokUrl = listener.url();
+        // console.log(`Ngrok tunnel: ${ngrokUrl}`);
         // updateConfig(ngrokUrl);
     } catch (err) {
         console.error('Ngrok error:', err);
