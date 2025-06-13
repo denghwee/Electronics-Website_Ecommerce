@@ -12,7 +12,7 @@ function stripe_get_link({
         orderInfo = "Pay with Stripe",
         successUrl = process.env.STRIPE_RETURN_URL,
         cancelUrl = process.env.STRIPE_CANCEL_URL,
-        metadata = {}
+        metadata
     } = {}) {
     return new Promise(async (resolve, reject) => {
         try {
@@ -29,9 +29,12 @@ function stripe_get_link({
                     quantity: 1,
                 }],
                 mode: 'payment',
-                success_url: successUrl + '?session_id={CHECKOUT_SESSION_ID}',
+                success_url: successUrl + `/${metadata.order_id}`,
                 cancel_url: cancelUrl,
                 metadata,
+                payment_intent_data: {
+                    metadata, // metadata này sẽ được copy vào payment_intent!
+                  }
             });
 
             if (session.url) {

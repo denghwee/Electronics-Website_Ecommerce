@@ -24,6 +24,9 @@ app.set('view engine', 'ejs');
 // use static folder
 app.use(express.static(path.join('src', 'public')))
 
+const orderController = require('./src/controllers/customer/orderController.js')
+app.use('/order/webhook', bodyParser.raw({type: 'application/json'}), orderController.webhook);
+
 //parse URL-encoded bodies
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }))
@@ -34,16 +37,6 @@ app.use(cookieParser('secret'))
 
 // route init
 route(app)
-
-// function updateConfig(ngrokUrl) {
-//     const configPath = path.join(__dirname, 'src/config/config.json');
-//     const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
-//     config.vnp_ReturnUrl = `${ngrokUrl}/return`;
-//     config.vnp_IpnUrl = `${ngrokUrl}/ipn`;
-//     fs.writeFileSync(configPath, JSON.stringify(config, null, 2), 'utf8');
-//     console.log('vnpay.config.json updated!');
-// }
-
 
 app.listen(cfg.port, async () => {
     console.log(`Website is running at http://${cfg.host}:${cfg.port}`);
