@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const bodyParser = require('body-parser');
 
 // import controller
 const orderController = require('../controllers/customer/orderController.js')

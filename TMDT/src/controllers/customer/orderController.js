@@ -8,8 +8,13 @@ const crypto = require('crypto');
 const request = require('request');
 const https = require('https');
 
+const bodyParser = require('body-parser');
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+
+
 
 const momo_get_link = require('../../helper/momo');
+const stripe_get_link = require('../../helper/stripe');
 
 const orderController = () => { }
 
@@ -173,7 +178,7 @@ orderController.payment = async (req, res) => {
 
 		try {
 			const url = await momo_get_link({
-				amount: totalAmount, 
+				amount: totalAmount,
 				orderInfo: `Thanh toán đơn hàng ${order_id} của ${name}`
 
 			});
@@ -182,12 +187,32 @@ orderController.payment = async (req, res) => {
 			return res.status(400).send(err);
 		}
 	} else if (paying_method_id == 2) {
-		res.render("./pages/order/atm", {
-			header: header,
-			user: header_user,
-			formatFunction: formatFunction,
-			purchase: purchase[0],
-		})
+		// res.render("./pages/order/atm", {
+		// 	header: header,
+		// 	user: header_user,
+		// 	formatFunction: formatFunction,
+		// 	purchase: purchase[0],
+		// })
+
+
+		let totalAmount = 0;
+		if (purchase[0] && Array.isArray(purchase[0].order_details)) {
+			totalAmount = purchase[0].order_details.reduce(
+				(sum, detail) => sum + (detail.order_detail_price_after || 0), 0
+			);
+		}
+
+		try {
+			const url = await stripe_get_link({
+				amount: totalAmount,
+				orderInfo: `Thanh toán đơn hàng ${order_id} của ${name}`,
+				metadata: {order_id: order_id}
+
+			});
+			return res.redirect(url);
+		} catch (err) {
+			return res.status(400).send(err);
+		}
 	} else if (paying_method_id == 3) {
 		res.render("./pages/order/credit", {
 			header: header,
@@ -198,6 +223,30 @@ orderController.payment = async (req, res) => {
 	}
 }
 
+orderController.webhook = async (req, res) => {
+	const sig = req.headers['stripe-signature'];
+	let event;
+
+	try {
+		event = stripe.webhooks.constructEvent(
+			req.body,
+			sig,
+			process.env.STRIPE_SECRET_WEBHOOK
+		);
+
+	} catch (err) {
+		return res.status(400).send(`Webhook Error: ${err.message}`);
+	}
+	if (event.type === 'payment_intent.succeeded') {
+		const paymentIntent = event.data.object;
+		// Cập nhật đơn hàng ở đây
+		console.log('Thanh toán thành công:', paymentIntent.metadata.order_id);
+
+		order.updateOrder(order_id=paymentIntent.metadata.order_id);
+	}
+
+	res.json({ received: true });
+};
 orderController.cancelOrder = async (req, res) => {
 	let order_id = req.body.order_id;
 
