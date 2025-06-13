@@ -209,7 +209,6 @@ orderController.payment = async (req, res) => {
 
 				metadata: { order_id: order_id }
 
-
 			});
 			return res.redirect(url);
 		} catch (err) {
@@ -253,7 +252,6 @@ orderController.webhook = async (req, res) => {
 			});
 			// console.log('Order updated with payment_intent_id:', paymentIntent.id);
 		}
-
 	}
 
 	res.json({ received: true });

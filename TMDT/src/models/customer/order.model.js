@@ -132,9 +132,11 @@ order.updateOrder = function (order_id, updateData = {}, callback) {
 
     db.query(sql, values, (err, result) => {
         if (err) {
-            console.error(err);
+            console.error('Update order error:', err);
             if (typeof callback === "function") callback(1, 0);
         } else {
+            console.log('Update order success:', result);
+
             if (typeof callback === "function") callback(0, 1);
         }
     });
