@@ -240,7 +240,7 @@ orderController.webhook = async (req, res) => {
 
 	if (event.type === 'payment_intent.succeeded') {
 		const paymentIntent = event.data.object;
-		console.log('Payment succeeded:', paymentIntent);
+		console.log('Thanh toán thành công:', paymentIntent.metadata.order_id);
 
 		// Cập nhật đơn hàng với payment_intent_id
 		const order_id = paymentIntent.metadata.order_id;
