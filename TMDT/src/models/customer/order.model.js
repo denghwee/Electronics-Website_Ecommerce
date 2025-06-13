@@ -135,7 +135,6 @@ order.updateOrder = function (order_id, updateData = {}, callback) {
             console.error('Update order error:', err);
             if (typeof callback === "function") callback(1, 0);
         } else {
-            console.log('Update order success:', result);
 
             if (typeof callback === "function") callback(0, 1);
         }
@@ -152,7 +151,6 @@ order.updateCancelOrder = function (order_id) {
                 console.error('Update cancel order error:', err);
                 reject(err);
             } else {
-                console.log('Update cancel order success:', result);
                 resolve(result);
             }
         });

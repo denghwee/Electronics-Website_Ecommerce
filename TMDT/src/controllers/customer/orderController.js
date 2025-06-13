@@ -280,7 +280,6 @@ orderController.refund = async (req, res) => {
 	try {
 		// Lấy thông tin đơn hàng
 		const purchase = await account.getPurchaseHistory(customer_id, 0, order_id);
-		console.log('Purchase info:', purchase);
 
 		if (!purchase || purchase.length === 0) {
 			return res.status(404).json({
@@ -314,11 +313,9 @@ orderController.refund = async (req, res) => {
 				(sum, detail) => sum + (detail.order_detail_price_after || 0), 0
 			);
 		}
-		console.log('Total amount to refund:', totalAmount);
 
 		// Lấy payment intent ID
 		const paymentIntentId = await order.getPaymentIntentId(order_id);
-		console.log('Payment intent ID:', paymentIntentId);
 
 		if (!paymentIntentId) {
 			return res.status(400).json({
@@ -333,7 +330,6 @@ orderController.refund = async (req, res) => {
 			amount: totalAmount,
 			reason: 'requested_by_customer'
 		});
-		console.log('Stripe refund response:', refund);
 
 		if (refund.status === 'succeeded') {
 			// Cập nhật trạng thái đơn hàng thành "Đã hủy"
