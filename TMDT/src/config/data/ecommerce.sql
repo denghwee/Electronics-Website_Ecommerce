@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Dec 18, 2023 at 01:08 PM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Máy chủ: 127.0.0.1:3307
+-- Thời gian đã tạo: Th6 08, 2025 lúc 06:17 PM
+-- Phiên bản máy phục vụ: 10.4.32-MariaDB
+-- Phiên bản PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `ie104_group2`
+-- Cơ sở dữ liệu: `ecommerce`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
+-- Cấu trúc bảng cho bảng `admin`
 --
 
 CREATE TABLE `admin` (
@@ -44,16 +44,16 @@ CREATE TABLE `admin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
--- Dumping data for table `admin`
+-- Đang đổ dữ liệu cho bảng `admin`
 --
 
 INSERT INTO `admin` (`admin_id`, `admin_login_name`, `admin_password`, `admin_name`, `admin_full_name`, `admin_avt_img`, `admin_birth`, `admin_sex`, `admin_email`, `admin_phone`, `admin_address`, `admin_role`, `admin_active`) VALUES
-(1, '21522436', '$2a$08$gacaZP8P7lcQeHoiW9fgkOr47/Y0vHv3HOixU1rELCc6rkv0oDw9K', 'Nhung', 'Nguyễn Thị Hồng Nhung', 'admin_1.jpg', '2003-04-02', 1, '21522436@gmail.techtwo.vn', '0987296708', 'Ký túc xá khu A: Đường Tạ Quang Bửu, Khu phố 6, Phường Linh Trung, Thành phố Thủ Đức, Thành phố Hồ Chí Minh', 'Owner', 1);
+(1, '21522436', '$2a$08$gacaZP8P7lcQeHoiW9fgkOr47/Y0vHv3HOixU1rELCc6rkv0oDw9K', 'Huy', 'Nguyễn Đăng Huy', 'admin_1.jpg', '2003-04-02', 1, '21522436@gmail.techtwo.vn', '0987296708', 'Số 72 đường 72 Khu đô thị Vạn Phúc city, Huyện Bình Phước, TP.Thủ Đức, TP. Hồ Chí Minh', 'Owner', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `carts`
+-- Cấu trúc bảng cho bảng `carts`
 --
 
 CREATE TABLE `carts` (
@@ -64,7 +64,7 @@ CREATE TABLE `carts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
--- Dumping data for table `carts`
+-- Đang đổ dữ liệu cho bảng `carts`
 --
 
 INSERT INTO `carts` (`customer_id`, `product_variant_id`, `cart_quantity`, `cart_added_date`) VALUES
@@ -90,7 +90,7 @@ INSERT INTO `carts` (`customer_id`, `product_variant_id`, `cart_quantity`, `cart
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categories`
+-- Cấu trúc bảng cho bảng `categories`
 --
 
 CREATE TABLE `categories` (
@@ -103,7 +103,7 @@ CREATE TABLE `categories` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
--- Dumping data for table `categories`
+-- Đang đổ dữ liệu cho bảng `categories`
 --
 
 INSERT INTO `categories` (`category_id`, `category_name`, `category_img`, `categorry_type`, `category_added_date`, `category_is_display`) VALUES
@@ -135,7 +135,7 @@ INSERT INTO `categories` (`category_id`, `category_name`, `category_img`, `categ
 -- --------------------------------------------------------
 
 --
--- Table structure for table `customers`
+-- Cấu trúc bảng cho bảng `customers`
 --
 
 CREATE TABLE `customers` (
@@ -144,7 +144,7 @@ CREATE TABLE `customers` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
--- Dumping data for table `customers`
+-- Đang đổ dữ liệu cho bảng `customers`
 --
 
 INSERT INTO `customers` (`customer_id`, `user_id`) VALUES
@@ -160,12 +160,13 @@ INSERT INTO `customers` (`customer_id`, `user_id`) VALUES
 (10, 10),
 (11, 31),
 (12, 32),
-(13, 33);
+(13, 33),
+(14, 34);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `discounts`
+-- Cấu trúc bảng cho bảng `discounts`
 --
 
 CREATE TABLE `discounts` (
@@ -180,12 +181,12 @@ CREATE TABLE `discounts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
--- Dumping data for table `discounts`
+-- Đang đổ dữ liệu cho bảng `discounts`
 --
 
 INSERT INTO `discounts` (`discount_id`, `discount_name`, `discount_description`, `discount_start_date`, `discount_end_date`, `discount_amount`, `discount_is_display`, `discount_img`) VALUES
-(1, 'Black Friday', 'Chương trình giảm giá Black Friday', '2023-11-23', '2023-11-30', 10, 1, ''),
-(2, 'Vui Tết', 'Chương trình giảm giá dịp Tết', '2024-01-01', '2024-03-01', 15, 1, ''),
+(1, 'Black Friday', 'Chương trình giảm giá Black Friday', '2025-11-23', '2025-11-30', 10, 1, ''),
+(2, 'Vui Ngày Thiếu Nhi', 'Chương trình giảm giá dịp Ngày Thiếu Nhi', '2025-06-01', '2025-06-09', 15, 1, ''),
 (3, 'Vui Trung Thu', 'Chương trình giảm giá dịp Trung Thu', '2023-09-25', '2023-09-30', 20, 1, ''),
 (4, 'Back to school', 'Chương trình giảm giá cho học sinh, sinh viên back to school', '2023-11-01', '2024-11-30', 12.5, 1, ''),
 (5, 'Kỷ niệm 5 năm thành lập', 'Chương trình giảm giá kỷ niệm 5 năm thành lập của TechTwo', '2023-11-01', '2024-02-29', 10, 1, ''),
@@ -200,7 +201,7 @@ INSERT INTO `discounts` (`discount_id`, `discount_name`, `discount_description`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `feedbacks`
+-- Cấu trúc bảng cho bảng `feedbacks`
 --
 
 CREATE TABLE `feedbacks` (
@@ -215,7 +216,7 @@ CREATE TABLE `feedbacks` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
--- Dumping data for table `feedbacks`
+-- Đang đổ dữ liệu cho bảng `feedbacks`
 --
 
 INSERT INTO `feedbacks` (`feedback_id`, `product_variant_id`, `customer_id`, `order_id`, `feedback_date`, `feedback_rate`, `feedback_content`, `feedback_is_display`) VALUES
@@ -470,7 +471,7 @@ INSERT INTO `feedbacks` (`feedback_id`, `product_variant_id`, `customer_id`, `or
 (760, 62, 1, 5, '2023-12-17', 5, 'Sản phẩm tuyệt vời', 1);
 
 --
--- Triggers `feedbacks`
+-- Bẫy `feedbacks`
 --
 DELIMITER $$
 CREATE TRIGGER `insert_after_feedbacks` AFTER INSERT ON `feedbacks` FOR EACH ROW BEGIN
@@ -500,7 +501,7 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `feedback_imgs`
+-- Cấu trúc bảng cho bảng `feedback_imgs`
 --
 
 CREATE TABLE `feedback_imgs` (
@@ -511,7 +512,7 @@ CREATE TABLE `feedback_imgs` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
 
 --
--- Dumping data for table `feedback_imgs`
+-- Đang đổ dữ liệu cho bảng `feedback_imgs`
 --
 
 INSERT INTO `feedback_imgs` (`feedback_img_id`, `feedback_id`, `feedback_img_name`, `feedback_img_is_display`) VALUES
@@ -528,7 +529,7 @@ INSERT INTO `feedback_imgs` (`feedback_img_id`, `feedback_id`, `feedback_img_nam
 -- --------------------------------------------------------
 
 --
--- Table structure for table `notifications`
+-- Cấu trúc bảng cho bảng `notifications`
 --
 
 CREATE TABLE `notifications` (
@@ -542,7 +543,7 @@ CREATE TABLE `notifications` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
--- Dumping data for table `notifications`
+-- Đang đổ dữ liệu cho bảng `notifications`
 --
 
 INSERT INTO `notifications` (`notification_id`, `notification_type_id`, `notification_title`, `notification_subtitle`, `notification_content`, `notification_date`, `notification_is_display`) VALUES
@@ -556,7 +557,7 @@ INSERT INTO `notifications` (`notification_id`, `notification_type_id`, `notific
 -- --------------------------------------------------------
 
 --
--- Table structure for table `notification_types`
+-- Cấu trúc bảng cho bảng `notification_types`
 --
 
 CREATE TABLE `notification_types` (
@@ -566,7 +567,7 @@ CREATE TABLE `notification_types` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
--- Dumping data for table `notification_types`
+-- Đang đổ dữ liệu cho bảng `notification_types`
 --
 
 INSERT INTO `notification_types` (`notification_type_id`, `notification_type_name`, `notification_type_img`) VALUES
@@ -581,7 +582,7 @@ INSERT INTO `notification_types` (`notification_type_id`, `notification_type_nam
 -- --------------------------------------------------------
 
 --
--- Table structure for table `orders`
+-- Cấu trúc bảng cho bảng `orders`
 --
 
 CREATE TABLE `orders` (
@@ -603,7 +604,7 @@ CREATE TABLE `orders` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
--- Dumping data for table `orders`
+-- Đang đổ dữ liệu cho bảng `orders`
 --
 ALTER TABLE orders ADD COLUMN payment_intent_id VARCHAR(255) DEFAULT NULL;
 
@@ -638,7 +639,7 @@ INSERT INTO `orders` (`order_id`, `customer_id`, `staff_id`, `order_name`, `orde
 -- --------------------------------------------------------
 
 --
--- Table structure for table `order_details`
+-- Cấu trúc bảng cho bảng `order_details`
 --
 
 CREATE TABLE `order_details` (
@@ -650,7 +651,7 @@ CREATE TABLE `order_details` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
--- Dumping data for table `order_details`
+-- Đang đổ dữ liệu cho bảng `order_details`
 --
 
 INSERT INTO `order_details` (`order_id`, `product_variant_id`, `order_detail_quantity`, `order_detail_price_before`, `order_detail_price_after`) VALUES
@@ -694,7 +695,7 @@ INSERT INTO `order_details` (`order_id`, `product_variant_id`, `order_detail_qua
 (50, 36, 1, 10990000, 9671200);
 
 --
--- Triggers `order_details`
+-- Bẫy `order_details`
 --
 DELIMITER $$
 CREATE TRIGGER `delete_before_order_details` BEFORE DELETE ON `order_details` FOR EACH ROW BEGIN
@@ -807,7 +808,7 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `paying_methods`
+-- Cấu trúc bảng cho bảng `paying_methods`
 --
 
 CREATE TABLE `paying_methods` (
@@ -817,7 +818,7 @@ CREATE TABLE `paying_methods` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
--- Dumping data for table `paying_methods`
+-- Đang đổ dữ liệu cho bảng `paying_methods`
 --
 
 INSERT INTO `paying_methods` (`paying_method_id`, `paying_method_name`, `paying_method_is_display`) VALUES
@@ -828,7 +829,7 @@ INSERT INTO `paying_methods` (`paying_method_id`, `paying_method_name`, `paying_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `products`
+-- Cấu trúc bảng cho bảng `products`
 --
 
 CREATE TABLE `products` (
@@ -845,7 +846,7 @@ CREATE TABLE `products` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
--- Dumping data for table `products`
+-- Đang đổ dữ liệu cho bảng `products`
 --
 
 INSERT INTO `products` (`product_id`, `category_id`, `product_name`, `supplier_id`, `product_avt_img`, `product_rate`, `product_description`, `product_period`, `product_view_count`, `product_is_display`) VALUES
@@ -919,7 +920,7 @@ INSERT INTO `products` (`product_id`, `category_id`, `product_name`, `supplier_i
 -- --------------------------------------------------------
 
 --
--- Table structure for table `product_details`
+-- Cấu trúc bảng cho bảng `product_details`
 --
 
 CREATE TABLE `product_details` (
@@ -931,7 +932,7 @@ CREATE TABLE `product_details` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
--- Dumping data for table `product_details`
+-- Đang đổ dữ liệu cho bảng `product_details`
 --
 
 INSERT INTO `product_details` (`product_detail_id`, `product_id`, `product_detail_name`, `product_detail_value`, `product_detail_unit`) VALUES
@@ -1506,7 +1507,7 @@ INSERT INTO `product_details` (`product_detail_id`, `product_id`, `product_detai
 -- --------------------------------------------------------
 
 --
--- Table structure for table `product_imgs`
+-- Cấu trúc bảng cho bảng `product_imgs`
 --
 
 CREATE TABLE `product_imgs` (
@@ -1517,7 +1518,7 @@ CREATE TABLE `product_imgs` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
--- Dumping data for table `product_imgs`
+-- Đang đổ dữ liệu cho bảng `product_imgs`
 --
 
 INSERT INTO `product_imgs` (`image_id`, `product_id`, `image_name`, `image_is_display`) VALUES
@@ -1815,7 +1816,7 @@ INSERT INTO `product_imgs` (`image_id`, `product_id`, `image_name`, `image_is_di
 -- --------------------------------------------------------
 
 --
--- Table structure for table `product_variants`
+-- Cấu trúc bảng cho bảng `product_variants`
 --
 
 CREATE TABLE `product_variants` (
@@ -1832,7 +1833,7 @@ CREATE TABLE `product_variants` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
--- Dumping data for table `product_variants`
+-- Đang đổ dữ liệu cho bảng `product_variants`
 --
 
 INSERT INTO `product_variants` (`product_variant_id`, `product_id`, `discount_id`, `product_variant_name`, `product_variant_price`, `product_variant_available`, `product_variant_is_stock`, `product_variant_is_bestseller`, `product_variant_added_date`, `product_variant_is_display`) VALUES
@@ -1918,7 +1919,7 @@ INSERT INTO `product_variants` (`product_variant_id`, `product_id`, `discount_id
 -- --------------------------------------------------------
 
 --
--- Table structure for table `staffs`
+-- Cấu trúc bảng cho bảng `staffs`
 --
 
 CREATE TABLE `staffs` (
@@ -1930,7 +1931,7 @@ CREATE TABLE `staffs` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
--- Dumping data for table `staffs`
+-- Đang đổ dữ liệu cho bảng `staffs`
 --
 
 INSERT INTO `staffs` (`staff_id`, `user_id`, `staff_role`, `staff_description`, `staff_added_date`) VALUES
@@ -1943,7 +1944,7 @@ INSERT INTO `staffs` (`staff_id`, `user_id`, `staff_role`, `staff_description`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `suppliers`
+-- Cấu trúc bảng cho bảng `suppliers`
 --
 
 CREATE TABLE `suppliers` (
@@ -1953,7 +1954,7 @@ CREATE TABLE `suppliers` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
 
 --
--- Dumping data for table `suppliers`
+-- Đang đổ dữ liệu cho bảng `suppliers`
 --
 
 INSERT INTO `suppliers` (`supplier_id`, `supplier_name`, `supplier_logo`) VALUES
@@ -2004,7 +2005,7 @@ INSERT INTO `suppliers` (`supplier_id`, `supplier_name`, `supplier_logo`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Cấu trúc bảng cho bảng `users`
 --
 
 CREATE TABLE `users` (
@@ -2023,7 +2024,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
--- Dumping data for table `users`
+-- Đang đổ dữ liệu cho bảng `users`
 --
 
 INSERT INTO `users` (`user_id`, `user_login_name`, `user_password`, `user_name`, `user_avt_img`, `user_birth`, `user_sex`, `user_email`, `user_phone`, `user_address`, `user_register_date`, `user_active`) VALUES
@@ -2042,12 +2043,13 @@ INSERT INTO `users` (`user_id`, `user_login_name`, `user_password`, `user_name`,
 (13, '0987654333', '$2a$08$eOIGRuOHME.s5d0c740JCuAtlEMupog/udCJwqHn9PC1jAQXPPX.e', 'Lê Bích Tuyền', 'user13.png', '1999-03-03', 'Nữ', 'user13@example.com', '0987654333', 'Bình Dương', '2023-01-01', 1),
 (14, '0987654334', '$2a$08$eOIGRuOHME.s5d0c740JCuAtlEMupog/udCJwqHn9PC1jAQXPPX.e', 'Lê Hồng Bảo Trinh', 'user14.png', '1999-03-03', 'Nữ', 'user14@example.com', '0987654334', 'Bình Dương', '2023-01-01', 1),
 (15, '0987654335', '$2a$08$eOIGRuOHME.s5d0c740JCuAtlEMupog/udCJwqHn9PC1jAQXPPX.e', 'Nguyễn Hoàng PHương Linh', 'user15.png', '1999-03-03', 'Nữ', 'user15@example.com', '0987654335', 'Bình Dương', '2023-01-01', 1),
-(31, '0987296708', '$2a$08$YzCffpozMPsdIMzoZ21M7.lbdOBdOgCobDdKZaZpU8u6RgUeb9zUm', 'Hồng Nhung', NULL, NULL, NULL, NULL, '0987296708', NULL, '2023-12-15', 1),
+(31, '0987296708', '$2a$08$YzCffpozMPsdIMzoZ21M7.lbdOBdOgCobDdKZaZpU8u6RgUeb9zUm', 'Huy', NULL, NULL, NULL, NULL, '0987296708', NULL, '2023-12-15', 1),
 (32, '0997654321', '$2a$08$m34kubjtYr2Hd5YufiNuUOTkGX92FjTKJ6dklXfgFKiWdCA7fRc.e', 'Hồng Nhung', NULL, NULL, NULL, NULL, '0997654321', NULL, '2023-12-15', 1),
-(33, '0887654321', '$2a$08$EX.tL8w9RDCIXlHXR8/yIuzFkaUFqPDiNuE7vZJCNxzD5u1f5KzcK', 'Linh Phương', NULL, NULL, NULL, NULL, '0887654321', NULL, '2023-12-15', 1);
+(33, '0887654321', '$2a$08$EX.tL8w9RDCIXlHXR8/yIuzFkaUFqPDiNuE7vZJCNxzD5u1f5KzcK', 'Linh Phương', NULL, NULL, NULL, NULL, '0887654321', NULL, '2023-12-15', 1),
+(34, '0912784204', '$2a$08$tdpIaWg5VScSd7BMUszsYeopZ/oT99KsAPlxj3qNbkSisetlNyqKC', 'Nguyễn Đăng Huy', NULL, NULL, NULL, NULL, '0912784204', NULL, '2025-03-13', 1);
 
 --
--- Triggers `users`
+-- Bẫy `users`
 --
 DELIMITER $$
 CREATE TRIGGER `after_insert_users` AFTER INSERT ON `users` FOR EACH ROW BEGIN
@@ -2060,7 +2062,7 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_notification`
+-- Cấu trúc bảng cho bảng `user_notification`
 --
 
 CREATE TABLE `user_notification` (
@@ -2070,7 +2072,7 @@ CREATE TABLE `user_notification` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
--- Dumping data for table `user_notification`
+-- Đang đổ dữ liệu cho bảng `user_notification`
 --
 
 INSERT INTO `user_notification` (`user_id`, `notification_id`, `user_notification_is_read`) VALUES
@@ -2097,7 +2099,7 @@ INSERT INTO `user_notification` (`user_id`, `notification_id`, `user_notificatio
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `view_cart`
+-- Cấu trúc đóng vai cho view `view_cart`
 -- (See below for the actual view)
 --
 CREATE TABLE `view_cart` (
@@ -2123,7 +2125,7 @@ CREATE TABLE `view_cart` (
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `view_cate_admin`
+-- Cấu trúc đóng vai cho view `view_cate_admin`
 -- (See below for the actual view)
 --
 CREATE TABLE `view_cate_admin` (
@@ -2140,7 +2142,7 @@ CREATE TABLE `view_cate_admin` (
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `view_count_cart`
+-- Cấu trúc đóng vai cho view `view_count_cart`
 -- (See below for the actual view)
 --
 CREATE TABLE `view_count_cart` (
@@ -2152,7 +2154,7 @@ CREATE TABLE `view_count_cart` (
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `view_dashboard`
+-- Cấu trúc đóng vai cho view `view_dashboard`
 -- (See below for the actual view)
 --
 CREATE TABLE `view_dashboard` (
@@ -2164,7 +2166,7 @@ CREATE TABLE `view_dashboard` (
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `view_discounts`
+-- Cấu trúc đóng vai cho view `view_discounts`
 -- (See below for the actual view)
 --
 CREATE TABLE `view_discounts` (
@@ -2181,7 +2183,7 @@ CREATE TABLE `view_discounts` (
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `view_getchart_revenue`
+-- Cấu trúc đóng vai cho view `view_getchart_revenue`
 -- (See below for the actual view)
 --
 CREATE TABLE `view_getchart_revenue` (
@@ -2195,7 +2197,7 @@ CREATE TABLE `view_getchart_revenue` (
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `view_getchart_top5_product`
+-- Cấu trúc đóng vai cho view `view_getchart_top5_product`
 -- (See below for the actual view)
 --
 CREATE TABLE `view_getchart_top5_product` (
@@ -2207,7 +2209,7 @@ CREATE TABLE `view_getchart_top5_product` (
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `view_notifications`
+-- Cấu trúc đóng vai cho view `view_notifications`
 -- (See below for the actual view)
 --
 CREATE TABLE `view_notifications` (
@@ -2225,7 +2227,7 @@ CREATE TABLE `view_notifications` (
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `view_order`
+-- Cấu trúc đóng vai cho view `view_order`
 -- (See below for the actual view)
 --
 CREATE TABLE `view_order` (
@@ -2250,7 +2252,7 @@ CREATE TABLE `view_order` (
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `view_orders`
+-- Cấu trúc đóng vai cho view `view_orders`
 -- (See below for the actual view)
 --
 CREATE TABLE `view_orders` (
@@ -2275,7 +2277,7 @@ CREATE TABLE `view_orders` (
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `view_order_detail`
+-- Cấu trúc đóng vai cho view `view_order_detail`
 -- (See below for the actual view)
 --
 CREATE TABLE `view_order_detail` (
@@ -2293,7 +2295,7 @@ CREATE TABLE `view_order_detail` (
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `view_products_admin`
+-- Cấu trúc đóng vai cho view `view_products_admin`
 -- (See below for the actual view)
 --
 CREATE TABLE `view_products_admin` (
@@ -2320,7 +2322,7 @@ CREATE TABLE `view_products_admin` (
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `view_products_info`
+-- Cấu trúc đóng vai cho view `view_products_info`
 -- (See below for the actual view)
 --
 CREATE TABLE `view_products_info` (
@@ -2344,7 +2346,7 @@ CREATE TABLE `view_products_info` (
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `view_products_resume`
+-- Cấu trúc đóng vai cho view `view_products_resume`
 -- (See below for the actual view)
 --
 CREATE TABLE `view_products_resume` (
@@ -2366,7 +2368,7 @@ CREATE TABLE `view_products_resume` (
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `view_product_feedbacks`
+-- Cấu trúc đóng vai cho view `view_product_feedbacks`
 -- (See below for the actual view)
 --
 CREATE TABLE `view_product_feedbacks` (
@@ -2389,7 +2391,7 @@ CREATE TABLE `view_product_feedbacks` (
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `view_product_variants`
+-- Cấu trúc đóng vai cho view `view_product_variants`
 -- (See below for the actual view)
 --
 CREATE TABLE `view_product_variants` (
@@ -2413,7 +2415,7 @@ CREATE TABLE `view_product_variants` (
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `view_product_variant_detail`
+-- Cấu trúc đóng vai cho view `view_product_variant_detail`
 -- (See below for the actual view)
 --
 CREATE TABLE `view_product_variant_detail` (
@@ -2437,7 +2439,7 @@ CREATE TABLE `view_product_variant_detail` (
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `view_user`
+-- Cấu trúc đóng vai cho view `view_user`
 -- (See below for the actual view)
 --
 CREATE TABLE `view_user` (
@@ -2462,7 +2464,7 @@ CREATE TABLE `view_user` (
 -- --------------------------------------------------------
 
 --
--- Structure for view `view_cart`
+-- Cấu trúc cho view `view_cart`
 --
 DROP TABLE IF EXISTS `view_cart`;
 
@@ -2471,7 +2473,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
--- Structure for view `view_cate_admin`
+-- Cấu trúc cho view `view_cate_admin`
 --
 DROP TABLE IF EXISTS `view_cate_admin`;
 
@@ -2480,7 +2482,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
--- Structure for view `view_count_cart`
+-- Cấu trúc cho view `view_count_cart`
 --
 DROP TABLE IF EXISTS `view_count_cart`;
 
@@ -2489,7 +2491,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
--- Structure for view `view_dashboard`
+-- Cấu trúc cho view `view_dashboard`
 --
 DROP TABLE IF EXISTS `view_dashboard`;
 
@@ -2498,7 +2500,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
--- Structure for view `view_discounts`
+-- Cấu trúc cho view `view_discounts`
 --
 DROP TABLE IF EXISTS `view_discounts`;
 
@@ -2507,7 +2509,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
--- Structure for view `view_getchart_revenue`
+-- Cấu trúc cho view `view_getchart_revenue`
 --
 DROP TABLE IF EXISTS `view_getchart_revenue`;
 
@@ -2516,7 +2518,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
--- Structure for view `view_getchart_top5_product`
+-- Cấu trúc cho view `view_getchart_top5_product`
 --
 DROP TABLE IF EXISTS `view_getchart_top5_product`;
 
@@ -2525,7 +2527,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
--- Structure for view `view_notifications`
+-- Cấu trúc cho view `view_notifications`
 --
 DROP TABLE IF EXISTS `view_notifications`;
 
@@ -2534,7 +2536,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
--- Structure for view `view_order`
+-- Cấu trúc cho view `view_order`
 --
 DROP TABLE IF EXISTS `view_order`;
 
@@ -2543,7 +2545,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
--- Structure for view `view_orders`
+-- Cấu trúc cho view `view_orders`
 --
 DROP TABLE IF EXISTS `view_orders`;
 
@@ -2552,7 +2554,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
--- Structure for view `view_order_detail`
+-- Cấu trúc cho view `view_order_detail`
 --
 DROP TABLE IF EXISTS `view_order_detail`;
 
@@ -2561,7 +2563,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
--- Structure for view `view_products_admin`
+-- Cấu trúc cho view `view_products_admin`
 --
 DROP TABLE IF EXISTS `view_products_admin`;
 
@@ -2570,7 +2572,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
--- Structure for view `view_products_info`
+-- Cấu trúc cho view `view_products_info`
 --
 DROP TABLE IF EXISTS `view_products_info`;
 
@@ -2579,7 +2581,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
--- Structure for view `view_products_resume`
+-- Cấu trúc cho view `view_products_resume`
 --
 DROP TABLE IF EXISTS `view_products_resume`;
 
@@ -2588,7 +2590,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
--- Structure for view `view_product_feedbacks`
+-- Cấu trúc cho view `view_product_feedbacks`
 --
 DROP TABLE IF EXISTS `view_product_feedbacks`;
 
@@ -2597,7 +2599,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
--- Structure for view `view_product_variants`
+-- Cấu trúc cho view `view_product_variants`
 --
 DROP TABLE IF EXISTS `view_product_variants`;
 
@@ -2606,7 +2608,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
--- Structure for view `view_product_variant_detail`
+-- Cấu trúc cho view `view_product_variant_detail`
 --
 DROP TABLE IF EXISTS `view_product_variant_detail`;
 
@@ -2615,51 +2617,51 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
--- Structure for view `view_user`
+-- Cấu trúc cho view `view_user`
 --
 DROP TABLE IF EXISTS `view_user`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_user`  AS SELECT `users`.`user_id` AS `user_id`, `users`.`user_login_name` AS `user_login_name`, `users`.`user_password` AS `user_password`, `users`.`user_name` AS `user_name`, `users`.`user_avt_img` AS `user_avt_img`, date_format(`users`.`user_birth`,'%d/%m/%Y') AS `user_birth`, `users`.`user_sex` AS `user_sex`, `users`.`user_email` AS `user_email`, `users`.`user_phone` AS `user_phone`, `users`.`user_address` AS `user_address`, `users`.`user_register_date` AS `user_register_date`, `users`.`user_active` AS `user_active`, `customers`.`customer_id` AS `customer_id`, `staffs`.`staff_id` AS `staff_id`, `staffs`.`staff_role` AS `staff_role`, `staffs`.`staff_description` AS `staff_description` FROM ((`users` left join `customers` on(`users`.`user_id` = `customers`.`user_id`)) left join `staffs` on(`users`.`user_id` = `staffs`.`user_id`)) ;
 
 --
--- Indexes for dumped tables
+-- Chỉ mục cho các bảng đã đổ
 --
 
 --
--- Indexes for table `admin`
+-- Chỉ mục cho bảng `admin`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`admin_id`),
   ADD UNIQUE KEY `admin_login_name` (`admin_login_name`);
 
 --
--- Indexes for table `carts`
+-- Chỉ mục cho bảng `carts`
 --
 ALTER TABLE `carts`
   ADD PRIMARY KEY (`customer_id`,`product_variant_id`),
   ADD KEY `fk_carts_product_variants` (`product_variant_id`);
 
 --
--- Indexes for table `categories`
+-- Chỉ mục cho bảng `categories`
 --
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`category_id`);
 
 --
--- Indexes for table `customers`
+-- Chỉ mục cho bảng `customers`
 --
 ALTER TABLE `customers`
   ADD PRIMARY KEY (`customer_id`),
   ADD KEY `fk_customers_users` (`user_id`);
 
 --
--- Indexes for table `discounts`
+-- Chỉ mục cho bảng `discounts`
 --
 ALTER TABLE `discounts`
   ADD PRIMARY KEY (`discount_id`);
 
 --
--- Indexes for table `feedbacks`
+-- Chỉ mục cho bảng `feedbacks`
 --
 ALTER TABLE `feedbacks`
   ADD PRIMARY KEY (`feedback_id`),
@@ -2668,27 +2670,27 @@ ALTER TABLE `feedbacks`
   ADD KEY `fk_product_variant_id` (`product_variant_id`);
 
 --
--- Indexes for table `feedback_imgs`
+-- Chỉ mục cho bảng `feedback_imgs`
 --
 ALTER TABLE `feedback_imgs`
   ADD PRIMARY KEY (`feedback_img_id`),
   ADD KEY `fk_feedback_id` (`feedback_id`);
 
 --
--- Indexes for table `notifications`
+-- Chỉ mục cho bảng `notifications`
 --
 ALTER TABLE `notifications`
   ADD PRIMARY KEY (`notification_id`),
   ADD KEY `fk_notifications_notification_types` (`notification_type_id`);
 
 --
--- Indexes for table `notification_types`
+-- Chỉ mục cho bảng `notification_types`
 --
 ALTER TABLE `notification_types`
   ADD PRIMARY KEY (`notification_type_id`);
 
 --
--- Indexes for table `orders`
+-- Chỉ mục cho bảng `orders`
 --
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`order_id`),
@@ -2697,20 +2699,20 @@ ALTER TABLE `orders`
   ADD KEY `fk_paying_method_id` (`paying_method_id`);
 
 --
--- Indexes for table `order_details`
+-- Chỉ mục cho bảng `order_details`
 --
 ALTER TABLE `order_details`
   ADD PRIMARY KEY (`order_id`,`product_variant_id`),
   ADD KEY `fk_order_details_product_variants` (`product_variant_id`);
 
 --
--- Indexes for table `paying_methods`
+-- Chỉ mục cho bảng `paying_methods`
 --
 ALTER TABLE `paying_methods`
   ADD PRIMARY KEY (`paying_method_id`);
 
 --
--- Indexes for table `products`
+-- Chỉ mục cho bảng `products`
 --
 ALTER TABLE `products`
   ADD PRIMARY KEY (`product_id`),
@@ -2718,21 +2720,21 @@ ALTER TABLE `products`
   ADD KEY `fk_products_suppliers` (`supplier_id`);
 
 --
--- Indexes for table `product_details`
+-- Chỉ mục cho bảng `product_details`
 --
 ALTER TABLE `product_details`
   ADD PRIMARY KEY (`product_detail_id`,`product_id`),
   ADD KEY `fk_product_details_products` (`product_id`);
 
 --
--- Indexes for table `product_imgs`
+-- Chỉ mục cho bảng `product_imgs`
 --
 ALTER TABLE `product_imgs`
   ADD PRIMARY KEY (`image_id`),
   ADD KEY `fk_product_id` (`product_id`);
 
 --
--- Indexes for table `product_variants`
+-- Chỉ mục cho bảng `product_variants`
 --
 ALTER TABLE `product_variants`
   ADD PRIMARY KEY (`product_variant_id`,`product_id`) USING BTREE,
@@ -2740,144 +2742,144 @@ ALTER TABLE `product_variants`
   ADD KEY `fk_products_variants_discounts` (`discount_id`);
 
 --
--- Indexes for table `staffs`
+-- Chỉ mục cho bảng `staffs`
 --
 ALTER TABLE `staffs`
   ADD PRIMARY KEY (`staff_id`),
   ADD KEY `fk_staffs_users` (`user_id`);
 
 --
--- Indexes for table `suppliers`
+-- Chỉ mục cho bảng `suppliers`
 --
 ALTER TABLE `suppliers`
   ADD PRIMARY KEY (`supplier_id`);
 
 --
--- Indexes for table `users`
+-- Chỉ mục cho bảng `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`user_id`);
 
 --
--- Indexes for table `user_notification`
+-- Chỉ mục cho bảng `user_notification`
 --
 ALTER TABLE `user_notification`
   ADD PRIMARY KEY (`user_id`,`notification_id`),
   ADD KEY `fk_user_notification_notifications` (`notification_id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT cho các bảng đã đổ
 --
 
 --
--- AUTO_INCREMENT for table `admin`
+-- AUTO_INCREMENT cho bảng `admin`
 --
 ALTER TABLE `admin`
   MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `categories`
+-- AUTO_INCREMENT cho bảng `categories`
 --
 ALTER TABLE `categories`
   MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
--- AUTO_INCREMENT for table `customers`
+-- AUTO_INCREMENT cho bảng `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- AUTO_INCREMENT for table `discounts`
+-- AUTO_INCREMENT cho bảng `discounts`
 --
 ALTER TABLE `discounts`
   MODIFY `discount_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- AUTO_INCREMENT for table `feedbacks`
+-- AUTO_INCREMENT cho bảng `feedbacks`
 --
 ALTER TABLE `feedbacks`
   MODIFY `feedback_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=761;
 
 --
--- AUTO_INCREMENT for table `notifications`
+-- AUTO_INCREMENT cho bảng `notifications`
 --
 ALTER TABLE `notifications`
   MODIFY `notification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `notification_types`
+-- AUTO_INCREMENT cho bảng `notification_types`
 --
 ALTER TABLE `notification_types`
   MODIFY `notification_type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `orders`
+-- AUTO_INCREMENT cho bảng `orders`
 --
 ALTER TABLE `orders`
   MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
--- AUTO_INCREMENT for table `paying_methods`
+-- AUTO_INCREMENT cho bảng `paying_methods`
 --
 ALTER TABLE `paying_methods`
   MODIFY `paying_method_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `products`
+-- AUTO_INCREMENT cho bảng `products`
 --
 ALTER TABLE `products`
   MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
--- AUTO_INCREMENT for table `product_details`
+-- AUTO_INCREMENT cho bảng `product_details`
 --
 ALTER TABLE `product_details`
   MODIFY `product_detail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=581;
 
 --
--- AUTO_INCREMENT for table `product_variants`
+-- AUTO_INCREMENT cho bảng `product_variants`
 --
 ALTER TABLE `product_variants`
   MODIFY `product_variant_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 
 --
--- AUTO_INCREMENT for table `staffs`
+-- AUTO_INCREMENT cho bảng `staffs`
 --
 ALTER TABLE `staffs`
   MODIFY `staff_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `suppliers`
+-- AUTO_INCREMENT cho bảng `suppliers`
 --
 ALTER TABLE `suppliers`
   MODIFY `supplier_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
--- Constraints for dumped tables
+-- Các ràng buộc cho các bảng đã đổ
 --
 
 --
--- Constraints for table `carts`
+-- Các ràng buộc cho bảng `carts`
 --
 ALTER TABLE `carts`
   ADD CONSTRAINT `fk_carts_customers` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`customer_id`),
   ADD CONSTRAINT `fk_carts_product_variants` FOREIGN KEY (`product_variant_id`) REFERENCES `product_variants` (`product_variant_id`);
 
 --
--- Constraints for table `customers`
+-- Các ràng buộc cho bảng `customers`
 --
 ALTER TABLE `customers`
   ADD CONSTRAINT `fk_customers_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
 
 --
--- Constraints for table `feedbacks`
+-- Các ràng buộc cho bảng `feedbacks`
 --
 ALTER TABLE `feedbacks`
   ADD CONSTRAINT `fk_customer_id` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`customer_id`),
@@ -2885,19 +2887,19 @@ ALTER TABLE `feedbacks`
   ADD CONSTRAINT `fk_product_variant_id` FOREIGN KEY (`product_variant_id`) REFERENCES `product_variants` (`product_variant_id`);
 
 --
--- Constraints for table `feedback_imgs`
+-- Các ràng buộc cho bảng `feedback_imgs`
 --
 ALTER TABLE `feedback_imgs`
   ADD CONSTRAINT `fk_feedback_id` FOREIGN KEY (`feedback_id`) REFERENCES `feedbacks` (`feedback_id`);
 
 --
--- Constraints for table `notifications`
+-- Các ràng buộc cho bảng `notifications`
 --
 ALTER TABLE `notifications`
   ADD CONSTRAINT `fk_notifications_notification_types` FOREIGN KEY (`notification_type_id`) REFERENCES `notification_types` (`notification_type_id`);
 
 --
--- Constraints for table `orders`
+-- Các ràng buộc cho bảng `orders`
 --
 ALTER TABLE `orders`
   ADD CONSTRAINT `fk_orders_customers` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`customer_id`),
@@ -2905,46 +2907,46 @@ ALTER TABLE `orders`
   ADD CONSTRAINT `fk_paying_method_id` FOREIGN KEY (`paying_method_id`) REFERENCES `paying_methods` (`paying_method_id`);
 
 --
--- Constraints for table `order_details`
+-- Các ràng buộc cho bảng `order_details`
 --
 ALTER TABLE `order_details`
   ADD CONSTRAINT `fk_order_details_orders` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`),
   ADD CONSTRAINT `fk_order_details_product_variants` FOREIGN KEY (`product_variant_id`) REFERENCES `product_variants` (`product_variant_id`);
 
 --
--- Constraints for table `products`
+-- Các ràng buộc cho bảng `products`
 --
 ALTER TABLE `products`
   ADD CONSTRAINT `fk_products_categories` FOREIGN KEY (`category_id`) REFERENCES `categories` (`category_id`),
   ADD CONSTRAINT `fk_products_suppliers` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`supplier_id`);
 
 --
--- Constraints for table `product_details`
+-- Các ràng buộc cho bảng `product_details`
 --
 ALTER TABLE `product_details`
   ADD CONSTRAINT `fk_product_details_products` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`);
 
 --
--- Constraints for table `product_imgs`
+-- Các ràng buộc cho bảng `product_imgs`
 --
 ALTER TABLE `product_imgs`
   ADD CONSTRAINT `fk_product_id` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`);
 
 --
--- Constraints for table `product_variants`
+-- Các ràng buộc cho bảng `product_variants`
 --
 ALTER TABLE `product_variants`
   ADD CONSTRAINT `fk_product_variants_products` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`),
   ADD CONSTRAINT `fk_products_variants_discounts` FOREIGN KEY (`discount_id`) REFERENCES `discounts` (`discount_id`);
 
 --
--- Constraints for table `staffs`
+-- Các ràng buộc cho bảng `staffs`
 --
 ALTER TABLE `staffs`
   ADD CONSTRAINT `fk_staffs_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
 
 --
--- Constraints for table `user_notification`
+-- Các ràng buộc cho bảng `user_notification`
 --
 ALTER TABLE `user_notification`
   ADD CONSTRAINT `fk_user_notification_notifications` FOREIGN KEY (`notification_id`) REFERENCES `notifications` (`notification_id`),

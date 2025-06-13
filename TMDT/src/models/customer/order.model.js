@@ -92,6 +92,25 @@ order.insertOrder = function (customer_id, orderInfo, orderDetails, callback) {
         }
     })
 }
+
+order.insertOrderDetails = async (order_id, orderDetails, callback) => {
+    let insertOrderDetails = `INSERT INTO order_details (order_id, product_variant_id, order_detail_quantity) 
+    VALUES (${order_id}, ${orderDetails[0].product_variant_id}, ${orderDetails[0].order_detail_quantity})`
+
+    for (let i = 1; i < orderDetails.length; i++) {
+        insertOrderDetails += ` ,(${order_id}, ${orderDetails[i].product_variant_id}, ${orderDetails[i].order_detail_quantity})`
+    }
+
+    db.query(insertOrderDetails, (err, result) => {
+        if (err) {
+            console.log(err);
+            callback(1, 0)
+        } else {
+            callback(0, 1)
+        }
+    })
+}
+
 order.updateOrder = function (order_id, updateData = {}, callback) {
     // Nếu chỉ truyền order_id và callback (không truyền updateData), mặc định cập nhật cả hai trường
     if (typeof updateData === "function" && callback === undefined) {
@@ -113,32 +132,12 @@ order.updateOrder = function (order_id, updateData = {}, callback) {
 
     db.query(sql, values, (err, result) => {
         if (err) {
-            console.error('Update order error:', err);
+            console.error(err);
             if (typeof callback === "function") callback(1, 0);
         } else {
-            console.log('Update order success:', result);
-
             if (typeof callback === "function") callback(0, 1);
         }
     });
-}
-
-order.insertOrderDetails = async (order_id, orderDetails, callback) => {
-    let insertOrderDetails = `INSERT INTO order_details (order_id, product_variant_id, order_detail_quantity) 
-    VALUES (${order_id}, ${orderDetails[0].product_variant_id}, ${orderDetails[0].order_detail_quantity})`
-
-    for (let i = 1; i < orderDetails.length; i++) {
-        insertOrderDetails += ` ,(${order_id}, ${orderDetails[i].product_variant_id}, ${orderDetails[i].order_detail_quantity})`
-    }
-
-    db.query(insertOrderDetails, (err, result) => {
-        if (err) {
-            console.log(err);
-            callback(1, 0)
-        } else {
-            callback(0, 1)
-        }
-    })
 }
 
 order.updateCancelOrder = function (order_id) {
