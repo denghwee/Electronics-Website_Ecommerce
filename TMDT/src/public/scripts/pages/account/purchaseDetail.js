@@ -103,3 +103,38 @@ cancelForm.addEventListener('submit', e => {
             }
         })
 })
+
+// Hàm xử lý hoàn tiền
+function refundOrder(orderId) {
+    if (!orderId) {
+        window.alert('Không tìm thấy thông tin đơn hàng')
+        return
+    }
+
+    if (confirm('Bạn có chắc chắn muốn hoàn tiền cho đơn hàng này?')) {
+        fetch('/order/refund', {
+            method: 'POST',
+            body: JSON.stringify({ order_id: orderId }),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    const successModal = document.querySelector('.success-modal')
+                    successModal.style.display = 'flex'
+                    setTimeout(() => {
+                        successModal.style.display = 'none'
+                        location.reload()
+                    }, 1000)
+                } else {
+                    window.alert(data.message || 'Có lỗi xảy ra, vui lòng thử lại sau')
+                }
+            })
+            .catch(err => {
+                console.error('Error:', err)
+                window.alert('Có lỗi xảy ra, vui lòng thử lại sau')
+            })
+    }
+}
