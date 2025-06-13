@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const bodyParser = require('body-parser');
 
 // import controller
 const orderController = require('../controllers/customer/orderController.js')
@@ -15,5 +16,7 @@ router.post('/information', authMiddleware.isLoggedIn, orderController.informati
 
 router.get('/payment', authMiddleware.isLoggedIn, orderController.payment)
 router.post('/cancel_order', authMiddleware.isLoggedIn, orderController.cancelOrder)
+
+router.post('/refund', authMiddleware.isLoggedIn, orderController.refund)
 
 module.exports = router;

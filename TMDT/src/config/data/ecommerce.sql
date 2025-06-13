@@ -605,6 +605,7 @@ CREATE TABLE `orders` (
 --
 -- Dumping data for table `orders`
 --
+ALTER TABLE orders ADD COLUMN payment_intent_id VARCHAR(255) DEFAULT NULL;
 
 INSERT INTO `orders` (`order_id`, `customer_id`, `staff_id`, `order_name`, `order_phone`, `order_date`, `order_delivery_date`, `order_delivery_address`, `order_note`, `order_total_before`, `order_total_after`, `paying_method_id`, `order_paying_date`, `order_is_paid`, `order_status`) VALUES
 (1, 1, 1, 'Phan Nguyễn Hải Yến', '0987654321', '2023-11-02', '2023-11-04', '123 Nguyen Van Troi Street, Ward 12, District 5, Ho Chi Minh City', 'Kiểm hàng trước', 13470000, 13470000, 1, '2023-11-30', 1, 'Hoàn thành'),

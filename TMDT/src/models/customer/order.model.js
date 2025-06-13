@@ -67,8 +67,8 @@ order.updateCart = async function (customer_id, productsUpdateCart, callback) {
 order.insertOrder = function (customer_id, orderInfo, orderDetails, callback) {
     let insertOrder = ''
     if (orderInfo.paying_method_id != 1) {
-        insertOrder = `INSERT INTO orders (customer_id, order_name, order_phone, order_delivery_address, order_note, paying_method_id)
-                        VALUES (${customer_id}, ? , '${orderInfo.order_phone}', ? , ? , ${orderInfo.paying_method_id})`
+        insertOrder = `INSERT INTO orders (customer_id, order_name, order_phone, order_delivery_address, order_note, paying_method_id, order_is_paid)
+                        VALUES (${customer_id}, ? , '${orderInfo.order_phone}', ? , ? , ${orderInfo.paying_method_id}, 0)`
     } else {
         insertOrder = `INSERT INTO orders (customer_id, order_name, order_phone, order_delivery_address, order_note, paying_method_id, order_is_paid, order_status)
                         VALUES (${customer_id}, ? , '${orderInfo.order_phone}', ? , ? , 1, 1 ,'Đang giao hàng')`
@@ -92,6 +92,36 @@ order.insertOrder = function (customer_id, orderInfo, orderDetails, callback) {
         }
     })
 }
+order.updateOrder = function (order_id, updateData = {}, callback) {
+    // Nếu chỉ truyền order_id và callback (không truyền updateData), mặc định cập nhật cả hai trường
+    if (typeof updateData === "function" && callback === undefined) {
+        callback = updateData;
+        updateData = { order_is_paid: 1, order_status: 'Đang giao hàng' };
+    }
+
+    if (!updateData || Object.keys(updateData).length === 0) {
+        updateData = { order_is_paid: 1, order_status: 'Đang giao hàng' };
+    }
+
+    const setStr = Object.keys(updateData)
+        .map(k => `${k} = ?`)
+        .join(", ");
+    const values = Object.values(updateData);
+
+    const sql = `UPDATE orders SET ${setStr} WHERE order_id = ?`;
+    values.push(order_id);
+
+    db.query(sql, values, (err, result) => {
+        if (err) {
+            console.error('Update order error:', err);
+            if (typeof callback === "function") callback(1, 0);
+        } else {
+            console.log('Update order success:', result);
+
+            if (typeof callback === "function") callback(0, 1);
+        }
+    });
+}
 
 order.insertOrderDetails = async (order_id, orderDetails, callback) => {
     let insertOrderDetails = `INSERT INTO order_details (order_id, product_variant_id, order_detail_quantity) 
@@ -111,18 +141,36 @@ order.insertOrderDetails = async (order_id, orderDetails, callback) => {
     })
 }
 
-order.updateCancelOrder = async (order_id, callback) => {
-    let updateCancelOrder = `UPDATE orders 
-                            SET orders.order_status = 'Đã hủy'
-                            WHERE orders.order_id = ${order_id}`
-    db.query(updateCancelOrder, (err, result) => {
-        if (err) {
-            console.log(err);
-            callback(1, 0);
-        } else {
-            callback(0, 1);
-        }
-    })
+order.updateCancelOrder = function (order_id) {
+    return new Promise((resolve, reject) => {
+        let updateCancelOrder = `UPDATE orders 
+                                SET orders.order_status = 'Đã hủy'
+                                WHERE orders.order_id = ${order_id}`;
+        db.query(updateCancelOrder, (err, result) => {
+            if (err) {
+                console.error('Update cancel order error:', err);
+                reject(err);
+            } else {
+                console.log('Update cancel order success:', result);
+                resolve(result);
+            }
+        });
+    });
+}
+
+// Thêm hàm mới để lấy payment_intent_id
+order.getPaymentIntentId = function (order_id) {
+    return new Promise((resolve, reject) => {
+        const sql = `SELECT payment_intent_id FROM orders WHERE order_id = ?`;
+        db.query(sql, [order_id], (err, result) => {
+            if (err) {
+                console.error('Get payment intent error:', err);
+                reject(err);
+            } else {
+                resolve(result[0]?.payment_intent_id);
+            }
+        });
+    });
 }
 
 module.exports = order
